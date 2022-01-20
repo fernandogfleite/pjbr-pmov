@@ -1,5 +1,6 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import Drawer from './navigation/Drawer';
+import Tab from './navigation/Tab';
 import { LogBox } from 'react-native';
 import { initializeApp } from "firebase/app";
 LogBox.ignoreLogs(['Setting a timer']);
@@ -18,7 +19,7 @@ initializeApp(firebaseConfig);
 
 const App = () => {
   return (
-    <Drawer></Drawer>
+    <Tab></Tab>
   );
 };
 
