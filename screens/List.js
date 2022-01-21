@@ -1,11 +1,29 @@
-import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import Item from '../components/Item';
 import Header from '../components/Header'
 
 import { useFonts } from 'expo-font';
 export default function List ( {route, navigation} ){
-  const { data } = route.params;
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const getGames = async () => {
+     try {
+      const response = await fetch('https://gamesapibr.herokuapp.com/games/');
+      const json = await response.json();
+      setData(json.games);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getGames();
+  }, []);
+
   const [loaded] = useFonts({
     TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
     TrispaceSemiBold: require('../assets/fonts/Trispace/Trispace-SemiBold.ttf'),
@@ -17,6 +35,7 @@ export default function List ( {route, navigation} ){
   return(
       <View style={styles.container}> 
         <Header></Header>
+        {isLoading ? <ActivityIndicator/> : (
           <View>
             <FlatList 
               nestedScrollEnabled
@@ -25,6 +44,7 @@ export default function List ( {route, navigation} ){
               renderItem={({ item }) => (<Item dados={ item } data={ data } navigation={navigation}></Item>)}
             />
           </View>
+        )}
       </View>
   );
 };

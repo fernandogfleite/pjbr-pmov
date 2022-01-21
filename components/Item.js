@@ -16,7 +16,7 @@ const Item = ({dados, data, navigation}) => {
     return (
         <Pressable onPress={() => navigation.navigate('C', {dados: dados, data: data})}> 
         <View style={styles.container}>
-            <Image style={styles.imageCard} source={{uri: dados.imgUrl}}/>
+            <Image style={styles.imageCard} source={{uri: dados.image}}/>
             <View style={styles.desc}>
             <Text style={styles.title}>{dados.title}</Text>
             <Text style={styles.text}>{dados.description}</Text>
