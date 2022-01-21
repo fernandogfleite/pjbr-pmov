@@ -3,7 +3,7 @@ import React from 'react';
 import Stack from './navigation/Stack';
 import { LogBox } from 'react-native';
 
-LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreAllLogs();
 
 const App = () => {
   return (
