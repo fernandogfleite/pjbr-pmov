@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Pressable, Text } from 'react-native';
 import { useFonts } from 'expo-font';
 
-export default Form = () => {
+export default Form = ({ navigation }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
+
   const [loaded] = useFonts({
     TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
     TrispaceSemiBold: require('../assets/fonts/Trispace/Trispace-SemiBold.ttf'),
@@ -19,18 +23,36 @@ export default Form = () => {
       <TextInput
         style={styles.input}
         placeholder='Digite o título do jogo'
+        onChangeText={(text) => setTitle(text)}
       />
       <Text style={styles.title}>Descrição</Text>
       <TextInput
         style={styles.inputLarge}
         placeholder='Escreva a descrição do jogo'
+        onChangeText={(text) => setDescription(text)}
       />
       <Text style={styles.title}>Capa</Text>
       <TextInput
         style={styles.input}
         placeholder='Deixe aqui o link da imagem de capa'
+        onChangeText={(text) => setImage(text)}
       />
-          <Pressable style={styles.bttn}>
+        <Pressable style={styles.bttn} onPress={()=>{
+          const game = {
+            title: title,
+            description: description,
+            image: image
+          }
+          fetch('https://gamesapibr.herokuapp.com/games/', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(game)
+          });
+          navigation.navigate('List')
+        }}>
       <Text style={styles.text}>Adicionar</Text>
     </Pressable>
     </View>

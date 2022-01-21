@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
 import Header from '../components/Header';
 
 import { useFonts } from 'expo-font';
+import Item from '../components/Item';
 
 const GameScreen = ({route, navigation}) => {
     const { dados, data } = route.params;
@@ -18,7 +19,7 @@ const GameScreen = ({route, navigation}) => {
         <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
         <Header/>
-        <Image style={styles.imageCard} source={{uri: dados.imgUrl}} />
+        <Image style={styles.imageCard} source={{uri: dados.image}} />
         <Text style= {styles.bigTitle}>{dados.title}</Text>
         <Text style= {styles.text}>{dados.description}</Text>
         <Text style= {styles.PlataformTitle}>Plataformas</Text>
@@ -37,15 +38,16 @@ const GameScreen = ({route, navigation}) => {
         <Text style={styles.text}>Placa de vídeo: Nvidia 450 GTS / Radeon HD 5750 ou melhor </Text>
         <Text style={styles.text}>DirectX: Versão 9.0 </Text>
         <Text style={styles.text}>Armazenamento: 3 GB de espaço disponível </Text>
-        <Button onPress={() => { 
-          for (let c in data){
-            if (data[c].id == dados.id){
-              data.pop(c)
-              navigation.navigate('B')
+        <Button title='Deletar' onPress={() => {
+          fetch('https://gamesapibr.herokuapp.com/games/'+ dados.id, {
+            method: 'DELETE',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
             }
-          }
-        }} title='Deletar'></Button>
-        
+          });
+          navigation.navigate('List')
+        }}/>
         </View>
         </ScrollView>
 

@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, StyleSheet, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import Item from '../components/Item';
 import Header from '../components/Header'
 
 import { useFonts } from 'expo-font';
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 export default function List ( {route, navigation} ){
+  const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -24,6 +30,14 @@ export default function List ( {route, navigation} ){
     getGames();
   }, []);
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    getGames()
+    wait(2000).then(() => {
+      setRefreshing(false)
+    });
+  }, []);
+
   const [loaded] = useFonts({
     TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
     TrispaceSemiBold: require('../assets/fonts/Trispace/Trispace-SemiBold.ttf'),
@@ -33,11 +47,16 @@ export default function List ( {route, navigation} ){
   }
 
   return(
-      <View style={styles.container}> 
+      <View style={styles.container} refreshControl> 
         <Header></Header>
         {isLoading ? <ActivityIndicator/> : (
           <View>
             <FlatList 
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                />}
               nestedScrollEnabled
               data={data}
               keyExtractor={({ id }) => id}

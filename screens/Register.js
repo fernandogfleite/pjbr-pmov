@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, StyleSheet, Button } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import Header from '../components/Header'
 
 import Form from '../components/Form'
@@ -15,11 +15,13 @@ const Register = ({navigation}) => {
         return null;
     }
 
+    
+
     return (
         <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
             <Header />
-            <Form style={styles.form} />
+            <Form style={styles.form} navigation={navigation}/>
             
         </View>
         </ScrollView>

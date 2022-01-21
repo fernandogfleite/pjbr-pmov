@@ -30,9 +30,6 @@ const Tab = () => {
     const Tab = createBottomTabNavigator();
 
     return (
-
-        <NavigationContainer theme={MyTheme}>
-
             <Tab.Navigator initialRouteName="Index" screenOptions={({ route }) => ({
                 tabBarIcon: ({ color }) => {
                     let iconName;
@@ -54,12 +51,10 @@ const Tab = () => {
                 headerShown: false
             })} >
                 <Tab.Screen name="Index" component={Index} />
-                <Tab.Screen name="List" component={List} initialParams={{ data: data }} />
+                <Tab.Screen name="List" component={List}/>
                 <Tab.Screen name="News" component={News} />
                 <Tab.Screen name="Register" component={Register} />
             </Tab.Navigator>
-
-        </NavigationContainer>
 
     );
 };

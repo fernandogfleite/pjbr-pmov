@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import Tab from './navigation/Tab';
+import Stack from './navigation/Stack';
 
 
 const App = () => {
   return (
-    <Tab></Tab>
+    <Stack></Stack>
   );
 };
 
