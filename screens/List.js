@@ -4,7 +4,8 @@ import Item from '../components/Item';
 import Header from '../components/Header'
 
 import { useFonts } from 'expo-font';
-export default function List ( {navigation} ){
+export default function List ( {route, navigation} ){
+  const { data } = route.params;
   const [loaded] = useFonts({
     TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
     TrispaceSemiBold: require('../assets/fonts/Trispace/Trispace-SemiBold.ttf'),
@@ -13,19 +14,17 @@ export default function List ( {navigation} ){
     return null;
   }
 
-  const data = []
-
   return(
       <View style={styles.container}> 
         <Header></Header>
-        <View>
-          <FlatList 
-            nestedScrollEnabled
-            data={data}
-            keyExtractor={({ id }) => id}
-            renderItem={({ item }) => (<Item dados={item} navigation={navigation}></Item>)}
-          />
-        </View>
+          <View>
+            <FlatList 
+              nestedScrollEnabled
+              data={data}
+              keyExtractor={({ id }) => id}
+              renderItem={({ item }) => (<Item dados={ item } data={ data } navigation={navigation}></Item>)}
+            />
+          </View>
       </View>
   );
 };

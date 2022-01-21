@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, Text, Dimensions, Pressable } from "react-nati
 import { useFonts } from 'expo-font';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
-const Item = ({dados, navigation}) => {
+const Item = ({dados, data, navigation}) => {
     
     const [loaded] = useFonts({
         TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
@@ -14,9 +14,9 @@ const Item = ({dados, navigation}) => {
     }
 
     return (
-        <Pressable onPress={() => navigation.navigate('C', {dados: dados})}> 
+        <Pressable onPress={() => navigation.navigate('C', {dados: dados, data: data})}> 
         <View style={styles.container}>
-            <Image style={styles.imageCard} source={{uri: dados.image}}/>
+            <Image style={styles.imageCard} source={{uri: dados.imgUrl}}/>
             <View style={styles.desc}>
             <Text style={styles.title}>{dados.title}</Text>
             <Text style={styles.text}>{dados.description}</Text>

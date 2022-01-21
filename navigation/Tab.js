@@ -9,6 +9,7 @@ import List from '../screens/List';
 import News from '../screens/News';
 import Register from '../screens/Register';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
+import data from '../data/data';
 
 const MyTheme = {
     ...DefaultTheme,
@@ -22,54 +23,6 @@ const MyTheme = {
 };
 
 
-const IndexStack = () => {
-    const Stack = createStackNavigator();
-
-    return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false
-        }}>
-            <Stack.Screen name="A" component={Index} />
-        </Stack.Navigator>
-    );
-}
-
-const ListStack = () => {
-    const Stack = createStackNavigator();
-
-    return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false
-        }}>
-            <Stack.Screen name="B" component={List} />
-            <Stack.Screen name="C" component={GameScreen} />
-        </Stack.Navigator>
-    );
-}
-
-const NewsStack = () => {
-    const Stack = createStackNavigator();
-
-    return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false
-        }}>
-            <Stack.Screen name="D" component={News} />
-        </Stack.Navigator>
-    );
-}
-
-const RegisterStack = () => {
-    const Stack = createStackNavigator();
-
-    return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false
-        }}>
-            <Stack.Screen name="E" component={Register} />
-        </Stack.Navigator>
-    );
-}
 
 
 const Tab = () => {
@@ -100,10 +53,10 @@ const Tab = () => {
                 tabBarInactiveTintColor: 'gray',
                 headerShown: false
             })} >
-                <Tab.Screen name="Index" component={IndexStack} />
-                <Tab.Screen name="List" component={ListStack} />
-                <Tab.Screen name="News" component={NewsStack} />
-                <Tab.Screen name="Register" component={RegisterStack} />
+                <Tab.Screen name="Index" component={Index} />
+                <Tab.Screen name="List" component={List} initialParams={{ data: data }} />
+                <Tab.Screen name="News" component={News} />
+                <Tab.Screen name="Register" component={Register} />
             </Tab.Navigator>
 
         </NavigationContainer>

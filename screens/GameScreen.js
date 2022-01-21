@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
-import Header from '../components/Header'
+import Header from '../components/Header';
 
 import { useFonts } from 'expo-font';
 
-const GameScreen = ({route}) => {
-    const { dados } = route.params;
+const GameScreen = ({route, navigation}) => {
+    const { dados, data } = route.params;
     const [loaded] = useFonts({
       TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
       TrispaceMedium: require('../assets/fonts/Trispace/Trispace-Medium.ttf'),
@@ -18,7 +18,7 @@ const GameScreen = ({route}) => {
         <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
         <Header/>
-        <Image style={styles.imageCard} source={{uri: dados.image}} />
+        <Image style={styles.imageCard} source={{uri: dados.imgUrl}} />
         <Text style= {styles.bigTitle}>{dados.title}</Text>
         <Text style= {styles.text}>{dados.description}</Text>
         <Text style= {styles.PlataformTitle}>Plataformas</Text>
@@ -37,6 +37,14 @@ const GameScreen = ({route}) => {
         <Text style={styles.text}>Placa de vídeo: Nvidia 450 GTS / Radeon HD 5750 ou melhor </Text>
         <Text style={styles.text}>DirectX: Versão 9.0 </Text>
         <Text style={styles.text}>Armazenamento: 3 GB de espaço disponível </Text>
+        <Button onPress={() => { 
+          for (let c in data){
+            if (data[c].id == dados.id){
+              data.pop(c)
+              navigation.navigate('B')
+            }
+          }
+        }} title='Deletar'></Button>
         
         </View>
         </ScrollView>
