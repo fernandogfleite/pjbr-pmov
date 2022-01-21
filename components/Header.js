@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Appbar } from 'react-native-paper';
 import { StyleSheet, Text } from 'react-native';
 import { useFonts } from 'expo-font';
+
 const Header = () => {
    const [loaded] = useFonts({
       TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
@@ -11,7 +12,7 @@ const Header = () => {
    return(
   <Appbar.Header style = {styles.item}>
      <Appbar.Content/><Text style={styles.title}>JogosBR</Text>
-      <Appbar.Action icon="menu" onPress={() => {}} />
+      <Appbar.Action icon="controller-classic"/>
   </Appbar.Header>)
 };
 

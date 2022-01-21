@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, ScrollView, StyleSheet, Button } from 'react-native'
 import Header from '../components/Header'
-import Footer from '../components/footer'
+
 import Form from '../components/Form'
 import { useFonts } from 'expo-font';
 
@@ -19,8 +19,8 @@ const Register = ({navigation}) => {
         <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
             <Header />
-            <Form />
-            <Footer />
+            <Form style={styles.form} />
+            
         </View>
         </ScrollView>
     );

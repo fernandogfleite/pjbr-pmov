@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text,  StyleSheet, ScrollView, Button } from 'react-native'
 import Header from '../components/Header'
-import Footer from '../components/footer'
+
+import CarouselCards from '../components/CarouselCards'
 import { useFonts } from 'expo-font';
 
 const Index = ({ navigation }) => {
@@ -17,11 +18,12 @@ const Index = ({ navigation }) => {
       <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
         <Header/>
+        <CarouselCards style={styles.container_card}/>
         <Text style= {styles.title}>O que é o JogosBr?</Text>
         <Text style= {styles.text}>A importância dada ao mercado de jogos no Brasil não é o ideal e muito menos condizente com a qualidade do conteúdo produzido aqui, por isso nosso objetivo é a divulgação desses jogos que fazem parte do que somos.</Text>
         <Text style= {styles.title}>Sobre os desenvolvedores</Text>
         <Text style= {styles.text}>Somos três alunos do IFAL do curso de Informática para internet. Entre os componentes do time temos, em ordem alfabética: Fernando Leite, José Matheus Santana, Larah Lira. Nosso time inteiro gosta da temática por nós abordada e somos muito interessados no conteúdo brasileiro também.</Text>
-        <Footer/>
+        
         </View>
       </ScrollView>
     );
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
   },
   container_card: {
     position: 'relative',
-    paddingTop: 20
+  
   },
   title:{
     fontFamily: 'TrispaceSemiBold',

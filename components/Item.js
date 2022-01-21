@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, StyleSheet, Image, Text, Pressable } from "react-native"
+import { View, StyleSheet, Image, Text, Dimensions, Pressable } from "react-native"
 import { useFonts } from 'expo-font';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
-const Item = () => {
+const Item = ({dados, navigation}) => {
+    
     const [loaded] = useFonts({
         TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
         TrispaceSemiBold: require('../assets/fonts/Trispace/Trispace-SemiBold.ttf'),
@@ -12,28 +14,28 @@ const Item = () => {
     }
 
     return (
+        <Pressable onPress={() => navigation.navigate('C', {dados: dados})}> 
         <View style={styles.container}>
-            <Image
-                style={styles.imageCard}
-                source={{uri: 'https://cdn.akamai.steamstatic.com/steam/apps/363800/capsule_616x353.jpg?t=1447372781'}}
-            />
+            <Image style={styles.imageCard} source={{uri: dados.image}}/>
             <View style={styles.desc}>
-            <Text style={styles.title}>Chroma Squad</Text>
-            <Text style={styles.text}>Chroma Squad é um RPG tático sobre cinco dublês que decidem sair de seus trabalhos e criar o seu próprio estúdio de TV inspirado em Power Rangers! Contrate atores, compre equipamentos e melhorias para o seu estúdio, crie armas e robôs gigantes feitos de papelão e fita crepe.</Text>
+            <Text style={styles.title}>{dados.title}</Text>
+            <Text style={styles.text}>{dados.description}</Text>
+            <MaterialCommunityIcons name='trash-can' size={32} color='red' />
             </View>
         </View>
+        </Pressable>
 
     );
 }
 
 export default Item;
-
+const SLIDER_WIDTH = Dimensions.get('window').width - 40
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         marginTop: 20,
-        marginBottom:24,
-        width: 320,
+        marginBottom:20,
+        width: SLIDER_WIDTH,
         height: 135,
         left: 20,
         backgroundColor: 'white',
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         borderRadius: 5,
         display: 'flex',
-        paddingBottom: 20
+        paddingBottom: 35
     },
     title: {
         fontFamily: 'TrispaceSemiBold',
@@ -50,6 +52,8 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         fontSize: 16,
         paddingLeft: 9,
+        marginTop:6,
+        marginBottom:6,
 
     },
     text: {

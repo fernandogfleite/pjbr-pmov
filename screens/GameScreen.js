@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
 import Header from '../components/Header'
-import Footer from '../components/footer'
+
 import { useFonts } from 'expo-font';
 
 const GameScreen = ({route}) => {
-    const { name } = route.params;
+    const { dados } = route.params;
     const [loaded] = useFonts({
       TrispaceRegular: require('../assets/fonts/Trispace/Trispace-Regular.ttf'),
       TrispaceMedium: require('../assets/fonts/Trispace/Trispace-Medium.ttf'),
@@ -18,15 +18,15 @@ const GameScreen = ({route}) => {
         <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
         <Header/>
-        <Image style={styles.imageCard} source={{uri: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1037130/capsule_616x353.jpg?t=1620854766'}} />
-        <Text style= {styles.bigTitle}>Dandy Ace</Text>
-        <Text style= {styles.text}>Dandy Ace é um jogo de ação extravagante, que segue um fabuloso mágico buscando combinar e usar suas cartas mágicas, lutando e saqueando para derrotar o Ilusionista de Olhos Verdes e se libertar de um espelho amaldiçoado.</Text>
+        <Image style={styles.imageCard} source={{uri: dados.image}} />
+        <Text style= {styles.bigTitle}>{dados.title}</Text>
+        <Text style= {styles.text}>{dados.description}</Text>
         <Text style= {styles.PlataformTitle}>Plataformas</Text>
         <View style={styles.containerFlex}>
             <Image source={require('../assets/xbox_logo.png')}/>
             <Image source={require('../assets/steam-logo.png')}/>
             <Image source={require('../assets/Epic_games_store_logo.png')}/>
-            <Image source={require('../assets/Epic_games_store_logo.png')}/>
+            <Image style={styles.img} source={require('../assets/consoles-ps-64.png')}/>
 
 
         </View>
@@ -37,7 +37,7 @@ const GameScreen = ({route}) => {
         <Text style={styles.text}>Placa de vídeo: Nvidia 450 GTS / Radeon HD 5750 ou melhor </Text>
         <Text style={styles.text}>DirectX: Versão 9.0 </Text>
         <Text style={styles.text}>Armazenamento: 3 GB de espaço disponível </Text>
-        <Footer/>
+        
         </View>
         </ScrollView>
 
@@ -81,6 +81,10 @@ const GameScreen = ({route}) => {
         width: 308,
         height: 176.5,
         borderRadius: 10,
+    },
+    img:{
+      width:100,
+      height:100
     },
     containerFlex: {
         flex:1,

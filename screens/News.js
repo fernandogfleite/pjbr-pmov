@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView, Button } from 'react-native'
 import Header from '../components/Header'
-import Footer from '../components/footer'
+
 import { useFonts } from 'expo-font';
 
 const News = ({navigation}) => {
@@ -25,7 +25,7 @@ const News = ({navigation}) => {
         <Text style= {styles.text}>Somos três alunos do IFAL do curso de Informática para internet. Entre os componentes do time temos, em ordem alfabética: Fernando Leite, José Matheus Santana, Larah Lira. Nosso time inteiro gosta da temática por nós abordada e somos muito interessados no conteúdo brasileiro também.</Text>
         <Text style= {styles.title}>Sobre os desenvolvedores</Text>
         <Text style= {styles.text}>Somos três alunos do IFAL do curso de Informática para internet. Entre os componentes do time temos, em ordem alfabética: Fernando Leite, José Matheus Santana, Larah Lira. Nosso time inteiro gosta da temática por nós abordada e somos muito interessados no conteúdo brasileiro também.</Text>
-        <Footer/>
+        
         </View>
         </ScrollView>
 
@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
     fontFamily: 'TrispaceBold',
     fontSize: 24,
     color: 'white',
-    textAlign: "center"
+    textAlign: "center",
+    marginTop:20,
+    marginBottom:40,
   },
   title:{
     fontFamily: 'TrispaceSemiBold',

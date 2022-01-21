@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, StatusBar, TextInput, Button, Text } from 'react-native';
+import { View, StyleSheet, TextInput, Pressable, Text } from 'react-native';
 import { useFonts } from 'expo-font';
 
 export default Form = () => {
@@ -10,22 +10,11 @@ export default Form = () => {
   if (!loaded) {
     return null;
   }
-  /*
 
-  const [title, setTitle] = useState('');
-  const [releaseYear, setReleaseYear] = useState('');
-
-  const addMovieFromService = () => {
-    addMovie(title, releaseYear).then(result => {
-      navigation.goBack();
-    })
-      .catch(error => {
-        console.log(error);
-      });
-  }*/
 
   return (
     <View style={styles.container}>
+      <Text style={styles.bigTitle}>Cadastre um novo jogo</Text>
       <Text style={styles.title}>Título</Text>
       <TextInput
         style={styles.input}
@@ -41,17 +30,9 @@ export default Form = () => {
         style={styles.input}
         placeholder='Deixe aqui o link da imagem de capa'
       />
-      <Text style={styles.title}>Plataformas</Text>
-      <TextInput
-        style={styles.input}
-        placeholder='Escreva as plataformas disponíveis'
-      />
-      <Text style={styles.title}>Requisistos Mínimos</Text>
-      <TextInput
-        style={styles.inputLarge}
-        placeholder='Escreva seus requisitos mínimos no seguinte formato:   "SO; Processador;Memória;Placa de vídeo;DirectX;Armazenamento"'
-      />
-      <Button color="#30A6B7" title="Adicionar" onPress={() => { }}></Button>
+          <Pressable style={styles.bttn}>
+      <Text style={styles.text}>Adicionar</Text>
+    </Pressable>
     </View>
   );
 };
@@ -59,7 +40,7 @@ export default Form = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    marginTop: 30,
   },
   input: {
     height: 40,
@@ -67,8 +48,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     backgroundColor: 'white',
-    color:'black',
-    borderColor:'white'
+    color: 'black',
+    borderColor: 'white'
   },
   inputLarge: {
     height: 40,
@@ -76,15 +57,37 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 10,
     backgroundColor: 'white',
-    color:'black',
-    borderColor:'white',
+    color: 'black',
+    borderColor: 'white',
     height: 100,
     textAlignVertical: 'top'
   },
-  title:{
+  title: {
     fontFamily: 'TrispaceSemiBold',
     color: 'white',
     textAlign: 'left',
-    fontSize:16,
+    fontSize: 16,
     paddingLeft: 20
-},});
+  },
+   bigTitle: {
+    fontFamily: 'TrispaceSemiBold',
+    fontSize: 24,
+    color: 'white',
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  bttn:{
+    borderRadius: 80,
+    padding: 10,
+    paddingHorizontal: 100,
+    alignSelf: 'center',
+    textAlign: 'center',
+    backgroundColor: '#30A6B7',
+    marginTop: 10
+  },
+  text:{
+    color: 'white',
+    fontFamily: 'TrispaceSemiBold',
+    fontSize: 18
+  }
+});
