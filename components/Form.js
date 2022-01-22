@@ -37,7 +37,7 @@ export default Form = ({ navigation }) => {
         placeholder='Deixe aqui o link da imagem de capa'
         onChangeText={(text) => setImage(text)}
       />
-        <Pressable style={styles.bttn} onPress={()=>{
+        <Pressable style={styles.bttn} hitSlop={10} onPress={()=>{
           const game = {
             title: title,
             description: description,

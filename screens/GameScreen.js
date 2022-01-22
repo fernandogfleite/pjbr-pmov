@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView, Button, Pressable } from 'react-native'
 import Header from '../components/Header';
-
 import { useFonts } from 'expo-font';
-import Item from '../components/Item';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 const GameScreen = ({route, navigation}) => {
     const { dados, data } = route.params;
@@ -19,6 +18,7 @@ const GameScreen = ({route, navigation}) => {
         <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <View>
         <Header/>
+        <Pressable><MaterialCommunityIcons size={20} style={styles.backbttn}onPress={()=>{navigation.navigate('List')}} name="arrow-left"/></Pressable>
         <Image style={styles.imageCard} source={{uri: dados.image}} />
         <Text style= {styles.bigTitle}>{dados.title}</Text>
         <Text style= {styles.text}>{dados.description}</Text>
@@ -38,7 +38,7 @@ const GameScreen = ({route, navigation}) => {
         <Text style={styles.text}>Placa de vídeo: Nvidia 450 GTS / Radeon HD 5750 ou melhor </Text>
         <Text style={styles.text}>DirectX: Versão 9.0 </Text>
         <Text style={styles.text}>Armazenamento: 3 GB de espaço disponível </Text>
-        <Button title='Deletar' onPress={() => {
+        <Pressable style={styles.bttn} title='Deletar' onPress={() => {
           fetch('https://gamesapibr.herokuapp.com/games/'+ dados.id, {
             method: 'DELETE',
             headers: {
@@ -47,7 +47,7 @@ const GameScreen = ({route, navigation}) => {
             }
           });
           navigation.navigate('List')
-        }}/>
+        }}><Text style={styles.text}>Deletar</Text></Pressable>
         </View>
         </ScrollView>
 
@@ -58,6 +58,22 @@ const GameScreen = ({route, navigation}) => {
       backgroundColor: '#4B2142',
       flex: 1,
       color: 'white',
+    },
+    bttn:{
+      borderRadius: 80,
+      paddingHorizontal: 80,
+      alignSelf: 'center',
+      textAlign: 'center',
+      backgroundColor: '#30A6B7',
+      marginVertical: 20,
+      color: 'white'
+    },
+    backbttn:{
+      padding: 10,
+      paddingHorizontal: 30,
+      alignSelf: 'flex-start',
+      marginTop: 10,
+      color: "white",
     },
     bigTitle:{
       fontFamily: 'TrispaceMedium',

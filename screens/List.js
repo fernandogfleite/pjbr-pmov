@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4B2142',
     flex: 1,
     color: 'white',
+    paddingBottom: 70
   },
   item: {
     backgroundColor: '#85C1E9',
